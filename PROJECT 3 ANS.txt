@@ -1,0 +1,83 @@
+var stricker  = createSprite(188,80,25,25);
+var coin1 = createSprite(265,316,15,15);
+var coin2 = createSprite(97,316,15,15);
+var coin3 = createSprite(163,318,15,15);
+var leftedge = createSprite(50,200,10,250);
+var topedge = createSprite(200,50,250,10);
+var rightedge = createSprite(350,200,10, 250);
+var bottomedge = createSprite(200,350,250,10);
+var leftline = createSprite(65,200,2,250);
+var topline = createSprite(200,65,250,2);
+var rightline = createSprite(335,200,2,250);
+var bottomline = createSprite(200,335,250,2);
+
+
+
+function draw() {
+    background(255, 255, 151);
+    stricker.shapeColor="red";
+    stricker.bounce(coin1);
+    stricker.bounce(coin2);
+    stricker.bounce(coin3);
+    stricker.bounceOff(leftedge);
+    stricker.bounceOff(topedge);
+    stricker.bounceOff(rightedge);
+    stricker.bounceOff(bottomedge);
+    
+    coin1.shapeColor="black";
+    coin1.bounceOff(leftedge);
+    coin1.bounceOff(topedge);
+    coin1.bounceOff(rightedge);
+    coin1.bounceOff(bottomedge);
+    coin1.bounce(coin2);
+    coin1.bounce(coin3);
+    
+    coin2.shapeColor = "black";
+    coin2.bounceOff(leftedge);
+    coin2.bounceOff(topedge);
+    coin2.bounceOff(rightedge);
+    coin2.bounceOff(bottomedge);
+    
+    coin3.shapeColor="black";
+    coin3.bounceOff(leftedge);
+    coin3.bounceOff(topedge);
+    coin3.bounceOff(rightedge);
+    coin3.bounceOff(bottomedge);
+  
+    if(keyDown(DOWN_ARROW)){
+      stricker.velocityX=0;
+      stricker.velocityY=8;
+     }
+    
+    if(keyDown(UP_ARROW)){
+      stricker.velocityX=0;
+      stricker.velocityY=-8;
+    } 
+    
+    
+    if(keyDown(LEFT_ARROW)){
+      stricker.velocityX=-8;
+      stricker.velocityY=0;
+    }
+    
+    if(keyDown(RIGHT_ARROW)){
+      stricker.velocityX=8;
+      stricker.velocityY=0;
+    }
+  
+  text("PUSH 3COINS OUT OF THE BOARD TO WIN",73,182);
+  
+  if (coin1.x>400||coin1.x<0||coin1.y<0||coin1.y>400,coin2.x>400||coin2.x<0||coin2.y<0||coin2.y>400,coin3.x<0||coin3.x>400||coin3.y<0||coin3.y>400){
+    text("YOW WIN",184,89);
+  }
+  
+  if (stricker.x>400||stricker.x<0||stricker.y>400||stricker.y<0){
+    text("YOU LOSE",197,254);
+    stricker.destroy();
+       coin1.destroy();
+       coin2.destroy();
+       coin3.destroy();
+  } 
+
+ drawSprites(); 
+}
